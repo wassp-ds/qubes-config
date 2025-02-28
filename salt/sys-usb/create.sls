@@ -51,7 +51,7 @@ prefs:
 - label: red
 - netvm: ""
 - audiovm: ""
-- memory: 400
+- memory: 300
 - maxmem: 0
 - vcpus: 1
 - virt_mode: hvm
@@ -60,6 +60,7 @@ prefs:
 features:
 - enable:
   - servicevm
+  - service.minimal-usbvm
   - appmenus-dispvm
 - disable:
   - service.network-manager

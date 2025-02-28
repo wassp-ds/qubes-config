@@ -35,7 +35,7 @@ prefs:
 - label: red
 - netvm: ""
 - audiovm: ""
-- memory: 400
+- memory: 300
 - maxmem: 0
 - vcpus: 1
 - virt_mode: hvm
@@ -47,6 +47,7 @@ prefs:
 features:
 - enable:
   - servicevm
+  - service.minimal-netvm
   - service.qubes-updates-proxy
 - disable:
   - service.cups
