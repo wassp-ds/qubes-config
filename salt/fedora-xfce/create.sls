@@ -62,3 +62,11 @@ features:
   - menu-items: "qubes-open-file-manager.desktop qubes-run-terminal.desktop qubes-start.desktop"
 {%- endload %}
 {{ load(defaults) }}
+
+"{{ slsdotpath }}-set-{{ template.template }}-management_dispbm-to-dvm-{{ template.template_clean }}":
+  qvm.vm:
+    - require:
+      - qvm: dvm-{{ template.template_clean }}
+    - name: {{ template.template }}
+    - prefs:
+      - management_dispvm: "dvm-{{ template.template_clean }}"
