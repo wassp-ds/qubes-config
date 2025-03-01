@@ -34,6 +34,8 @@ include:
       - man-db
       - info
       - texinfo
+      - exuberant-ctags
+      - universal-ctags
       ## Searching files
       - file
       - tree
