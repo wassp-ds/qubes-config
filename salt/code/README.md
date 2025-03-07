@@ -1,6 +1,6 @@
 # code
 
-Development environment in Qubes OS.
+Build and test environment in Qubes OS.
 
 ## Table of Contents
 
@@ -11,10 +11,9 @@ Development environment in Qubes OS.
 
 ## Description
 
-Setup a development qube named "dev". Defines the user interactive shell,
-installing goodies, applying dotfiles, being client of sys-pgp, sys-git and
-sys-ssh-agent. The qube has netvm but can reach remote servers if the policy
-allows.
+Setup a development qube named "code". Defines the user interactive shell,
+installing goodies, applying dotfiles, being client of sys-pgp and  sys-git.
+The qube can reach remote servers if the policy allows.
 
 ## Installation
 
@@ -71,4 +70,5 @@ The development qube `code` can be used for:
 
 *   code execution;
 *   building programs;
-*   fetching and pushing to and from local qube repository with split-git; and
+*   testing programs;
+*   fetching and pushing to and from local qube repository with split-git.
