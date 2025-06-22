@@ -34,6 +34,7 @@ include:
       - man-db
       - info
       - texinfo
+      - cloc
       ## Searching files
       - file
       - tree
