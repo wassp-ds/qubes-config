@@ -35,6 +35,7 @@ include:
       - info
       - texinfo
       - cloc
+      - universal-ctags
       ## Searching files
       - file
       - tree
