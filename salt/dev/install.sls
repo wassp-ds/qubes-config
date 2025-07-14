@@ -30,6 +30,7 @@ include:
       - tmux
       - xclip
       - bash-completion
+      - tig
       ## Reading documentation
       - man-db
       - info
