@@ -11,7 +11,9 @@ include:
   - dev.home-cleanup
   - dotfiles.copy-all
   - utils.tools.zsh
+  - sys-pgp.install-client
   - sys-git.install-client
+  - sys-ssh-agent.install-client
 
 "{{ slsdotpath }}-installed":
   pkg.installed:
@@ -23,42 +25,36 @@ include:
     - pkgs:
       ## Necessary
       - qubes-core-agent-passwordless-root
-      - qubes-core-agent-networking
       - ca-certificates
-      - build-essential
+      ## Networking
+      - qubes-core-agent-networking
+      - curl
       ## Usability
       - tmux
       - xclip
       - bash-completion
-      - jq
-      - xxd
-      - zstd
-      ## File management
+      ## Reading documentation
+      - man-db
+      - info
+      - texinfo
+      - cloc
+      ## Searching files
       - file
       - tree
       - ripgrep
       - fzf
-      - zip
-      ## internet stuff
-      - curl
-      - dnsutils
       ## Lint
-      - pre-commit
-      - precious
       - gitlint
       - pylint
-      - yamllint
-      - ruby-mdl
-      - codespell
 
 ## Fedora doesn't have: ruby-mdl (markdownlint, mdl)
 ## Debian doesn't have: salt-lint
 {% set pkg = {
     'Debian': {
-      'pkg': ['shellcheck', 'fd-find'],
+      'pkg': ['shellcheck', 'vim-nox', 'fd-find'],
     },
     'RedHat': {
-      'pkg': ['ShellCheck', 'fd-find', 'passwd'],
+      'pkg': ['ShellCheck', 'vim-enhanced', 'fd-find', 'salt-lint', 'passwd'],
     },
 }.get(grains.os_family) -%}
 
