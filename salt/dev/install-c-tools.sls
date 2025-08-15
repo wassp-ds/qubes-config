@@ -23,6 +23,5 @@ include:
       - cscope
       - cppcheck
       - manpages-dev
-      - universal-ctags
 
 {% endif %}
