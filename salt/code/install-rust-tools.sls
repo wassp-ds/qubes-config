@@ -7,7 +7,7 @@ include:
   cmd.run:
   - require:
     - sls: utils.tools.common.update
-  - name: 'curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh s -- -y'
+  - name: 'curl -LJ --proxy http://127.0.0.1:8082 --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh s -- -y'
   - unless: 'command -v rustup'
 
 {% endif %}
