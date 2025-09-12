@@ -19,7 +19,7 @@ include:
 ## Install rustup (Rust toolchain installer) via script
 "{{ slsdotpath }}-download-rustup":
   cmd.run:
-    - name: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    - name: curl --proxy 127.0.0.1:8082 --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     - unless: command -v rustc
     - runas: user
     - require:
