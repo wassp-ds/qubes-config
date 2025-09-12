@@ -17,29 +17,13 @@ include:
     - skip_suggestions: True
     - setopt: "install_weak_deps=False"
     - pkgs:
+      - python3-dev
+      - python3-venv
       - python3-setuptools
       - python3-pytest
       - python3-pip
-      - python3-mypy
       - black
+      - mypy
       - pylint
-
-{% set pkg = {
-    'Debian': {
-        'pkg': ['python3-dev', 'python3-venv'],
-      },
-    'RedHat': {
-        'pkg': ['python3-devel'],
-      },
-  }.get(grains.os_family) -%}
-
-"{{ slsdotpath }}-installed-python-tools-os-specific":
-  pkg.installed:
-    - require:
-      - sls: utils.tools.common.update
-    - install_recommends: False
-    - skip_suggestions: True
-    - setopt: "install_weak_deps=False"
-    - pkgs: {{ pkg.pkg|sequence|yaml }}
 
 {% endif %}
