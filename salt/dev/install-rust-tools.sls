@@ -14,25 +14,11 @@ include:
       - curl
       - build-essential
       - gcc
-      - libc6-dev
 
 ## Install rustup (Rust toolchain installer) via script
 "{{ slsdotpath }}-download-rustup":
   cmd.run:
     - name: curl --proxy 127.0.0.1:8082 --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    - unless: command -v rustc
-    - runas: user
-    - env:
-      HTTP_PROXY: http://127.0.0.1:8082
-      http_proxy: http://127.0.0.1:8082
-      HTTPS_PROXY: http://127.0.0.1:8082
-      https_proxy: http://127.0.0.1:8082
-      ALL_PROXY: http://127.0.0.1:8082
-      all_proxy: http://127.0.0.1:8082
-      NO_PROXY: 127.0.0.1
-      no_proxy: 127.0.0.1
-    - require:
-      - pkg: "{{ slsdotpath }}-installed-rust-deps"
 
 ## Add cargo bin to PATH
 "{{ slsdotpath }}-cargo-path":

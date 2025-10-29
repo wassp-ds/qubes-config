@@ -4,7 +4,9 @@ SPDX-FileCopyrightText: 2025 wassp <cyberwassp@gmail.com>
 SPDX-License-Identifier: AGPL-3.0-or-later
 #}
 
-base:
-  'tpl-otee-dev':
-    - match: list
-    - otee-dev.install
+{% if grains['nodename'] != 'dom0' -%}
+
+include:
+  - dev.install-common
+
+"{{ slsdotpath }}-installed-rust":

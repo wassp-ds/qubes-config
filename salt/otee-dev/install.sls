@@ -7,13 +7,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 {% if grains['nodename'] != 'dom0' -%}
 
 include:
-  - utils.tools.common.update
-  - {{ slsdotpath }}.home-cleanup
-  - dotfiles.copy-all
-  - utils.tools.zsh
-  - sys-pgp.install-client
-  - sys-git.install-client
-  - sys-ssh-agent.install-client
+  - dev.install-common
+  - dev.install-python-tools
 
 "{{ slsdotpath }}-installed":
   pkg.installed:
@@ -23,37 +18,8 @@ include:
     - skip_suggestions: True
     - setopt: "install_weak_deps=False"
     - pkgs:
-      ## Necessary
-      - qubes-core-agent-passwordless-root
-      - ca-certificates
-      ## Usability
-      - tmux
-      - xclip
-      - bash-completion
-      - tig
-      ## Reading documentation
-      - man-db
-      - info
-      - texinfo
-      - cloc
-      - universal-ctags
-      ## Searching files
-      - file
-      - tree
-      - ripgrep
-      - fzf
-      ## Lint
       - pre-commit
-      - precious
-      - reuse
-      - gitlint
-      - pylint
-      - yamllint
-      - ruby-mdl
-      - codespell
 
-## Fedora doesn't have: ruby-mdl (markdownlint, mdl)
-## Debian doesn't have: salt-lint
 {% set pkg = {
     'Debian': {
       'pkg': ['shellcheck', 'vim-nox', 'fd-find'],

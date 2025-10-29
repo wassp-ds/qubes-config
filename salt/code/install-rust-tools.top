@@ -1,3 +1,0 @@
-base:
-  'tpl-code':
-    - code.install-rust-tools
