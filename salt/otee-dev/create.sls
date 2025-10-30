@@ -1,5 +1,5 @@
 {#
-SPDX-FileCopyrightText: 2023 - 2024 Benjamin Grande M. S. <ben.grande.b@gmail.com>
+SPDX-FileCopyrightText: 2023 - 2025 wassp <cyberwassp@gmail.com>
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 #}
@@ -33,9 +33,9 @@ prefs:
 - label: purple
 - netvm: ""
 - audiovm: ""
-- vcpus: 1
-- memory: 400
-- maxmem: 600
+- vcpus: 4
+- memory: 8000
+- maxmem: 10000
 - autostart: False
 - include_in_backups: True
 features:
@@ -61,9 +61,9 @@ prefs:
 - template: tpl-{{ slsdotpath }}
 - label: red
 - audiovm: ""
-- vcpus: 1
-- memory: 400
-- maxmem: 600
+- vcpus: 2
+- memory: 4000
+- maxmem: 6000
 - autostart: False
 - template_for_dispvms: True
 - include_in_backups: False
@@ -89,9 +89,9 @@ prefs:
 - template: dvm-{{ slsdotpath }}
 - label: red
 - audiovm: ""
-- vcpus: 1
-- memory: 400
-- maxmem: 600
+- vcpus: 2
+- memory: 4000
+- maxmem: 6000
 - autostart: False
 - include_in_backups: False
 features:

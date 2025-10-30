@@ -9,6 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 include:
   - dev.install-common
   - dev.install-python-tools
+  - dev.install-c-tools
 
 "{{ slsdotpath }}-installed":
   pkg.installed:
@@ -18,24 +19,8 @@ include:
     - skip_suggestions: True
     - setopt: "install_weak_deps=False"
     - pkgs:
+      # TODO: define properly, unfinished
       - pre-commit
 
-{% set pkg = {
-    'Debian': {
-      'pkg': ['shellcheck', 'vim-nox', 'fd-find'],
-    },
-    'RedHat': {
-      'pkg': ['ShellCheck', 'vim-enhanced', 'fd-find', 'salt-lint', 'passwd'],
-    },
-}.get(grains.os_family) -%}
-
-"{{ slsdotpath }}-installed-os-specific":
-  pkg.installed:
-    - require:
-      - sls: utils.tools.common.update
-    - install_recommends: False
-    - skip_suggestions: True
-    - setopt: "install_weak_deps=False"
-    - pkgs: {{ pkg.pkg|sequence|yaml }}
 
 {% endif -%}

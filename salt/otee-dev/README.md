@@ -11,9 +11,9 @@ Development environment in Qubes OS.
 
 ## Description
 
-Setup a development qube named "dev". Defines the user interactive shell,
-installing goodies, applying dotfiles, being client of sys-pgp, sys-git and
-sys-ssh-agent. The qube has netvm but can reach remote servers if the policy
+Setup a development qube named "otee-dev", dedicated to contributing to OTee repositories.
+As there is a very broad set of repositories, only common packages will be
+installed. The qube has no netvm but can reach remote servers if the policy
 allows.
 
 ## Installation
@@ -21,9 +21,9 @@ allows.
 *   Top:
 
 ```sh
-sudo qubesctl top.enable dev
-sudo qubesctl --targets=tpl-dev,dvm-dev,dev state.apply
-sudo qubesctl top.disable dev
+sudo qubesctl top.enable otee-dev
+sudo qubesctl --targets=tpl-otee-dev,dvm-otee-dev,otee-dev state.apply
+sudo qubesctl top.disable otee-dev
 proxy_target="$(qusal-report-updatevm-origin)"
 if test -n "${proxy_target}"; then
   sudo qubesctl --skip-dom0 --targets="${proxy_target}" state.apply sys-net.install-proxy
@@ -35,10 +35,10 @@ fi
 <!-- pkg:begin:post-install -->
 
 ```sh
-sudo qubesctl state.apply dev.create
-sudo qubesctl --skip-dom0 --targets=tpl-dev state.apply dev.install
-sudo qubesctl --skip-dom0 --targets=dvm-dev state.apply dev.configure-dvm
-sudo qubesctl --skip-dom0 --targets=dev state.apply dev.configure
+sudo qubesctl state.apply otee-dev.create
+sudo qubesctl --skip-dom0 --targets=tpl-otee-dev state.apply otee-dev.install
+sudo qubesctl --skip-dom0 --targets=dvm-otee-dev state.apply otee-dev.configure-dvm
+sudo qubesctl --skip-dom0 --targets=otee-dev state.apply otee-dev.configure
 proxy_target="$(qusal-report-updatevm-origin)"
 if test -n "${proxy_target}"; then
   sudo qubesctl --skip-dom0 --targets="${proxy_target}" state.apply sys-net.install-proxy
@@ -46,12 +46,6 @@ fi
 ```
 
 <!-- pkg:end:post-install -->
-
-If you want some Python goodies, you can install them:
-
-```sh
-sudo qubesctl --skip-dom0 --targets=tpl-dev state.apply dev.install-python-tools
-```
 
 The installation will make the Qusal TCP Proxy available in the `updatevm`
 (after it is restarted in case it is template based). If you want to have the
@@ -69,7 +63,7 @@ to take effect.
 
 _Default policy_: `denies` `all` qubes from calling `qusal.ConnectTCP`
 
-Allow qube `dev` to `connect` to `github.com:22` via `disp-sys-net` but not to
+Allow qube `otee-dev` to `connect` to `github.com:22` via `disp-sys-net` but not to
 any other host or via any other qube:
 
 ```qrexecpolicy
@@ -79,16 +73,11 @@ qusal.ConnectTCP *              dev @anyvm   deny
 
 ## Usage
 
-The development qube `dev` can be used for:
+The development qube `otee-dev` can be used for:
 
-*   code development;
-*   building programs;
-*   signing commits, tags, pushes and verifying with split-gpg;
-*   fetching and pushing to and from local qube repository with split-git; and
-*   fetching and pushing to and from remote repository with split-ssh-agent
-    and without direct network connection, you can open port to the desired
-    SSH or HTTP server.
+*   everything the [dev](../dev/README.md) qube can do;
+*   contributing to OTee repositories
 
-As the `dev` qube has no netvm, configure the Qrexec policy to allow or ask
+As the `otee-dev` qube has no netvm, configure the Qrexec policy to allow or ask
 calls to the `qusal.ConnectTCP` RPC service, so the qube can communicate with
 a remote repository for example.

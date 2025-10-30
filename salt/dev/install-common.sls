@@ -43,7 +43,6 @@ include:
       - ripgrep
       - fzf
       ## Lint
-      - pre-commit
       - gitlint
 
 ## Fedora doesn't have: ruby-mdl (markdownlint, mdl)

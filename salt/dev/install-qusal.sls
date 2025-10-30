@@ -7,21 +7,19 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 {% if grains['nodename'] != 'dom0' -%}
 
 include:
-  - utils.tools.common.update
+  - dev.install-common
 
-"{{ slsdotpath }}-installed-python-tools":
+"{{ slsdotpath }}-installed-qusal":
   pkg.installed:
     - require:
       - sls: utils.tools.common.update
     - install_recommends: False
-    - skip_suggestions: True
-    - setopt: "install_weak_deps=False"
+    - skip_recommends: True
+    - sepopt: "install_weak_deps=False"
     - pkgs:
-      - clangd
-      - clang-tidy
-      - cmake
-      - cscope
-      - cppcheck
-      - manpages-dev
+      - yamllint
+      - codespell
+      - pre-commit
+      - reuse
 
-{% endif %}
+## Debian doesn't have: salt-lint
