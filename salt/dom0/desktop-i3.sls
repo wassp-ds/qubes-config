@@ -19,6 +19,7 @@ include:
     - pkgs:
       - i3
       - i3status
+      - j4-dmenu-desktop
       - dmenu
       - dunst
 
